@@ -129,7 +129,6 @@ public class ClientsDBManager implements ClientSManager {
 
 	@Override
 	public List<Client> getAllClients(Connection con) {
-		// TODO Auto-generated method stub
 		Statement stmt = null;
 	    String query =
 	        "select client_id, client_name, password, type, address,email,phone,comment "  + "from "  + " clients";

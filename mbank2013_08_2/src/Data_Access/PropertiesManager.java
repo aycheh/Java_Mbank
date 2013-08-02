@@ -1,16 +1,23 @@
 package Data_Access;
 
 import java.sql.Connection;
+import java.util.List;
 
+import Core_System.Client;
 import Core_System.Properties;
 
 public interface PropertiesManager {
 
-		/**edit properties table **/
-	public boolean updatepropertiesvalues(Connection con, PropertiesManager p);
 	
-	/**select Properties from table **/
-	public  Properties selectPropertiesValues(Connection con, Properties p);
+	/**get Properties**/
+	public  Properties getPropertiesValues(Connection con, Properties p);
+	/**update System Property **/
+	public void updateSystemProperty(Connection con, Properties p);
+	/**getAllProperties**/
+	public List<Properties> getAllProperties(Connection con);
+	
+		
+	
 		
 	
 	

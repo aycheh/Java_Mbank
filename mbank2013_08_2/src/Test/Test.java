@@ -165,15 +165,26 @@ public class Test {
 //			// System.out.println(a);;
 //		 }
 		 
-		 AdminActivity act3 = b.AdminLogin( "password","admin");
+		// AdminActivity act3 = b.AdminLogin( "password","admin");
 		 
-		 act3.viewAllClientDeposits(2);
+		// act3.viewAllClientDeposits(1);
 			//act2.viewClientActivities(1);
 		/***************************************/
 		// TODO Fix This and get client activities using client_id !!!!!
 		/**Get client activities**/
 		// AdminActivity act2 = b.AdminLogin( "password","admin");
 		 //act2.ViewClientActivities(1);
+		
+		/********************************************/
+		/**update System Property**/
+		AdminActivity act4 = b.AdminLogin( "password","admin");
+		//act4.updateSystemProperty(new Properties("gold_daily_interest", "0.019"));
+		/**************************************************************************/
+		act4.viewSystemproperty();
+//		 for (Properties a : act4.viewSystemproperty()){
+//			System.out.println(a);;
+//			 }
+		
 		 
 		
 	

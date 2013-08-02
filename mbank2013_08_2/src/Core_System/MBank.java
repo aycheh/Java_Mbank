@@ -39,7 +39,7 @@ public class MBank {
 	/** Admin Login **/
 	public AdminActivity AdminLogin(String prop_key, String prop_value) {
 		Properties p = new Properties(prop_key, prop_value);
-		p = PropertiesDBManager.getInstance().selectPropertiesValues(
+		p = PropertiesDBManager.getInstance().getPropertiesValues(
 				conn.getConnectionFromPool(), p);
 		if (p != null && p.getProp_key().equals(prop_key)
 				&& p.getProp_value().equals(prop_value)) {

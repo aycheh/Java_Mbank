@@ -39,7 +39,7 @@ public class AdminActivity {
 		ConnectionPoolManager conn = new ConnectionPoolManager();
 		properties.setProp_key(p.getProp_key());
 		properties.setProp_value(p.getProp_value());
-		p = PropertiesDBManager.getInstance().selectPropertiesValues(
+		p = PropertiesDBManager.getInstance().getPropertiesValues(
 				conn.getConnectionFromPool(), p);
 		String str = p.getProp_value();
 		int Prop_value = Integer.parseInt(str);
@@ -222,17 +222,29 @@ public class AdminActivity {
 			
 			System.out.println(c);
 		}
+		System.out.println("ist<Client>" +clients );
 		return clients;
 	}
 	
 	
 
-	public void updateSystemProperty() {
-
+	public void updateSystemProperty(Properties p) {
+		ConnectionPoolManager conn = new ConnectionPoolManager();
+		Properties p1 = new Properties(p.getProp_key(),p.getProp_value());
+		PropertiesDBManager.getInstance().updateSystemProperty(conn.getConnectionFromPool(),p1);
+		System.out.println(p);
+	
 	}
 
-	public Properties viewSystemproperty() {
-		return null;
+	public List<Properties> viewSystemproperty() {
+		
+		ConnectionPoolManager con = new ConnectionPoolManager();
+		List<Properties> properties = new ArrayList<Properties>();;
+		PropertiesDBManager.getInstance().getAllProperties(con.getConnectionFromPool());
+		for (Properties p : properties){
+		System.out.println(p);
+		}
+		return properties;
 	}
 
 }
