@@ -1,0 +1,370 @@
+// This code is create new AdminAction object(all methods are activetedS))
+		//AdminAction AdminAction_1 = new AdminAction();
+		//System.out.println(AdminAction_1);
+		System.out.println();
+		System.out.println();
+		//AdminAction AdminAction_2 = new AdminAction();
+		//System.out.println("AdminAction_2" + AdminAction.addNewClient());
+		System.out.println();
+		System.out.println();
+		//System.out.println("removeClient AdminAction_3:  " + AdminAction.removeClient());
+		System.out.println();
+		System.out.println();
+		
+		============
+		
+		//System.out.println("AdminAction_3:  " + AdminAction.createNewAccount());
+		
+		
+//		Account account1 = new Account(1, 1, 100, 20, "i am Account1");
+//		System.out.println();
+//		System.out.println();
+//		System.out.println();
+		//System.out.println(account1)
+		
+		======
+		
+		 AdminAction.addNewClient();
+		 System.out.println("Client");
+		
+		/**
+	 * //this code is work and creates client and account: public static void
+	 * main(String[] args) { MBank b = MBank.getInstance();
+	 * System.out.println("I am MBank B  = "+ b); //(account_id, client_id,
+	 * balance, credit_limit, comment) Account account1 = new Account(1, 1, 100,
+	 * 20, "i am Account1"); System.out.println(account1); /** //(client_id,
+	 * client_name, password, address, email, phone, comment, account)) Client
+	 * client1 = new Client(1, "Asher Aycheh", "1234", "Kidosh ha shem",
+	 * "Asher@gmail.com", "054-3350272", "This is client1", account1);
+	 * System.out.println(client1); }
+	 **/
+	 
+	 
+	 //		System.out.println("create client and account:"
+//				+ AdminAction.addNewClient() + "\n" + "account from client:"
+//				+ AdminAction.createNewAccount());
+//		System.out.println();
+//		System.out.println();
+		
+		//AdminAction.addNewClient(1, "Asher Aycheh", "1234", "Kidosh ha shem",
+//				 "Asher@gmail.com", "054-3350272", "This is client1",AdminAction.createNewAccount());
+
+System.out.println(AdminAction.addNewClient());
+
+
+
+============
+
+
+
+	/**
+	 * int client_id, String client_name, String password, String address,
+	 * String email, String phone, String comment, Account account //
+	 * **************************** // public static Client addNewClient // (int
+	 * i, String string, String string2, String string3, String string4, //
+	 * String string5, String string6, Account account){ //(client_id,
+	 * client_name, password, address, email, phone, comment, account) Client
+	 * client = new Client(2, "Eden", "4567", "Popel 11", "eden@gmail.com",
+	 * "058-3344565", "I am client from Admin action", null); return client; //
+	 * int client_id, String client_name, String password, // String address,
+	 * String email, String phone, String comment, // Account account
+	 **/
+	 
+	 
+	 ==========
+	 
+	/**
+	 * //Account(int account_id, int client_id, double balance, double
+	 * credit_limit, String comment) //Account account = new Account(1, 2,
+	 * 10000, 1001, "I am an account from AdminAction"); //Account account = new
+	 * Account(System.in); this.account_id = account_id; this.client_id =
+	 * client_id; this.balance = balance; this.credit_limit = credit_limit;
+	 * this.comment = comment;
+	 */
+	 
+	 =======================
+	 
+	 
+	 
+		// // **************************************************
+		// System.out.println(AdminAction.addNewClient());
+		// System.out.println();
+		// System.out.println();
+		// //System.out.println(AdminAction.createNewAccount());
+		// AdminAction.createNewAccount();
+		//
+
+		// ConnectionPoolManager manager = new ConnectionPoolManager();
+		//
+		// Connection conn = null;
+		//
+		// try {
+		//
+		// conn = manager.getConnectionFromPool();
+		//
+		// System.out.println("Connected to  database");
+		//
+		// java.sql.Statement stmt = conn.createStatement();
+		// stmt.executeQuery("select * from clients;");
+		// // this update query works good:
+		// //stmt.executeUpdate("update clients set client_name = \"Asher 123\" where client_id = 1;");
+		// //System.out.println("query executed 1");
+		// //stmt.executeUpdate("update clients set client_name = \"Asher Asher\" where client_id = 2;");
+		// //System.out.println("query executed 2");
+		//
+		// ResultSet rs =
+		// stmt.executeQuery("select client_id from clients where client_id=1;");
+		// System.out.println("the result is :  "+rs.toString());
+		// conn.close();
+		// System.out.println("Disconnected from database");
+		// } catch (Exception e) {
+		// e.printStackTrace();
+		// System.out.println("Error Trace in getConnection() : "
+		// + e.getMessage());
+		// } finally {
+		// if (conn != null) {
+		// manager.returnConnectionToPool(conn);
+		// }
+		// } //try cstch final end
+		// **************************************************
+
+		//
+		// client c;
+		//
+		// Action a = b.login(AdminAction);
+		//
+		
+		****************************************
+		try {
+					System.out.println();
+//				String query = "SELECT * FROM clients";
+//				Statement st = (Statement) con.createStatement();
+				//PreparedStatement pstmt =  (PreparedStatement) con.createStatement();
+				PreparedStatement pstmt = con.prepareStatement("SELECT * FROM clients;"); 
+				ResultSet rs =  pstmt.executeQuery();
+				
+				while(rs.next()){
+					Long client_id = rs.getLong("client_id");
+					String client_name = rs.getString("client_name");
+					String password = rs.getString("password");
+					String type = rs.getString("type");
+					String address = rs.getString("address");
+					String email = rs.getString("email");
+					String phone = rs.getString("phone");
+					String comment = rs.getString("comment");
+					
+					System.out.format("%s,%s,%s,%s,%s,%s,%s,%s\n",client_id,client_name,password,type,address,
+							email,phone,comment);
+					System.out.println(rs);
+					
+				}
+					
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
+			
+			
+		}
+		**********************************************************
+		
+		/**
+	
+		 String query = "SELECT * FROM users";
+
+	      // create the java statement
+	      Statement st = conn.createStatement();
+	      
+	      // execute the query, and get a java resultset
+	      ResultSet rs = st.executeQuery(query);
+	      
+	      // iterate through the java resultset
+	      while (rs.next())
+	      {
+	        int id = rs.getInt("id");
+	        String firstName = rs.getString("first_name");
+	        String lastName = rs.getString("last_name");
+	        Date dateCreated = rs.getDate("date_created");
+	        boolean isAdmin = rs.getBoolean("is_admin");
+	        int numPoints = rs.getInt("num_points");
+	        
+	        // print the results
+	        System.out.format("%s, %s, %s, %s, %s, %s\n", id, firstName, lastName, dateCreated, isAdmin, numPoints);
+	      }
+	      st.close();
+	
+	**/
+	
+	/////from class Action/////
+	
+	public class Action {
+	
+
+	public void updateClientDetails(){
+		
+	}
+	
+	public void closeDeposit(){
+		
+	}
+	
+	public Client viewClientDetails(Client cl){
+		
+		return cl;
+	}
+	
+	public Account viewAccountDetails(Account ac){
+		return ac;
+	}
+	
+	public Deposit viewClientDeposit(Deposit dp){
+		return dp;
+	}
+	
+	public Activity viewClientActivities(client_id, Activity actv ){
+		return null;
+	}
+	
+	public void viewSystemProperty(){
+		
+	}
+	/////////////////////////////
+	
+		@Override
+	public boolean Deposit(Connection con, Deposit d) {
+//		try {
+//			PreparedStatement pstmt = con
+//					.prepareStatement("insert into deposit value (?,?,?,?,?,?,?)");
+//			pstmt.setInt(1, (int) d.getDeposit_id());
+//			pstmt.setInt(2, (int) d.getClient_id());
+//			pstmt.setDouble(3, (int) d.getBalance());
+//			pstmt.setString(4, d.getType().name());
+//			pstmt.setLong(5, d.getEstimated_balance());
+//			// pstmt.setTime(6, Time.valueOf("13:02:08"));
+//			// pstmt.setTime(7, Time.valueOf("13:02:08"));
+//			pstmt.setDate(6, (Date) d.getOpening_date());
+//			pstmt.setDate(7, (Date) d.getClosing_date());
+//			pstmt.executeUpdate();
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//
+//		return false;
+//	}
+
+
+============================================
+
+public ActivitysManager login(Connection conn, String prop_key, String prop_value, int client_id,String password) {
+		
+
+			try {
+				if (prop_key == prop.getProp_key() && prop_value == prop.getProp_value()) {
+			
+					return ActivitysManager;
+					
+				}else if  (client_id == cl.getClient_id() && password == cl.getPassword()){
+					return ActivitysManager;
+				}else {
+				
+				}
+			} catch (Exception e) {
+				System.err.println("can't login");
+				e.printStackTrace();
+			}
+			return null;
+
+		}
+		
+		
+		
+
+
+//	public Activity Clientlogin(int client_id, String password) {
+//		try {
+//			if (client_id == cl.getClient_id() && password == cl.getPassword()) {
+//
+//				System.out.println(" Client login seccess");
+//			}
+//
+//		} catch (Exception e) {
+//			System.err.println("Client can't login");
+//		}
+//
+//		System.out.println(" = client" + cl.getPassword());
+//		return clactiv;
+//
+//	}
+
+	// **************************************
+=======================================================
+package Core_System;
+//
+import java.util.Date;
+
+import Data_Access.AccountsDBManager;
+import Data_Access.ActivitysDBManager;
+import Data_Access.ClientSManager;
+import Data_Access.ClientsDBManager;
+import Data_Access.ConnectionPoolManager;
+import Data_Access.DepositsDBManager;
+import Data_Access.PropertiesDBManager;
+import com.mysql.jdbc.Connection;
+//
+public class ClientActivity  {
+	private Client client;
+	private Account account;
+	
+	
+
+	public ClientActivity(Client client, Account account) {
+		super();
+		this.client = client;
+		this.account = account;
+	}
+
+
+	public void withdraw(double amnout) throws MbankException {
+		// TODO Auto-generated method stub
+		if (amnout <= 0){
+			throw new MbankException("illegal amount: " + amnout);
+		}
+		if (account.getBalance() - amnout > account.getCredit_limit()){
+			account.setBalance(account.getBalance() - amnout);
+		}else{
+			throw new MbankException("you don't have sufficient credit");
+		}
+		
+	}
+
+	
+	public void deposit(double amnout) throws MbankException {
+		
+		if (amnout <= 0){
+			throw new MbankException("illegal amount: " + amnout);
+		}
+		//account.setAmount(account.getbalance() + amnout);
+		account.setBalance(account.getBalance() + amnout);
+		
+	}
+
+	
+	public Client getClient() {
+		// TODO Auto-generated method stub
+		return this.client;
+	}
+
+
+	public double getBalance() {
+		// TODO Auto-generated method stub
+		return this.account.getBalance();
+	}
+	
+=======================================================
+deposit.getBalance += amnout;
+//		 this.balance += amount;
+//		// getCommission = amount * commission_rate;
+//		this.balance -= amount;
+++++++++++++++++++++++++++++++++++++++++++++++++
+	 
