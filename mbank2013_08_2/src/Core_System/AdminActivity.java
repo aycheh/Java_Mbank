@@ -90,6 +90,7 @@ public class AdminActivity {
 		
 	}
 
+		/**removeClient**/
 	public Client removeClient(int client_id) throws MbankException {
 		// TODO Validate this method,what allowed when Remove client
 		Client cl = new Client(client_id);
@@ -107,6 +108,7 @@ public class AdminActivity {
 
 	}
 
+		/**removeAccount**/
 	public Account removeAccount(int account_id) throws MbankException {
 		// TODO Validate this method,what allowed when Remove account
 		Account ac = new Account(account_id);
@@ -122,9 +124,10 @@ public class AdminActivity {
 		}
 
 	}
-
+	
+		/**view Client Details**/
 	public Client viewClientDetails(int client_id) throws MbankException {
-		// TODO view Client Details
+
 		Client cl = new Client(client_id);
 		ConnectionPoolManager conn = new ConnectionPoolManager();
 		client = ClientsDBManager.getInstance().selectClient(
@@ -140,7 +143,6 @@ public class AdminActivity {
 
 	/**View all clients details**/
 	public Client viewAllClientsDetails() {
-//		// TODO View all clients details
 		List<Client> clients = new ArrayList<Client>();
 		ConnectionPoolManager con = new ConnectionPoolManager();
 		clients = ClientsDBManager.getInstance().getAllClients(con.getConnectionFromPool());
@@ -153,8 +155,7 @@ public class AdminActivity {
 
 	
 	/**View accounts details**/
-	public List<Account> viewAllAccounts() {
-		// TODO 
+	public List<Account> viewAllAccounts() { 
 		List<Account> accounts = new ArrayList<Account>();
 		ConnectionPoolManager con = new ConnectionPoolManager();
 		accounts = AccountsDBManager.getInstance().getAllAccounts(con.getConnectionFromPool());
@@ -165,9 +166,8 @@ public class AdminActivity {
 		return accounts;
 	}
 	
-
+		/**View client deposits**/
 	public Deposit viewDeposit(int deposit_id) {
-		// TODO View client deposits
 		ConnectionPoolManager con = new ConnectionPoolManager();
 		Deposit deposit = new Deposit(deposit_id);
 		deposit = DepositsDBManager.getInstance().getDeposit(con.getConnectionFromPool(), deposit);
@@ -213,13 +213,10 @@ public class AdminActivity {
 	
 	
 	public List<Client> ViewClientActivities(int Client_id) {
-		// TODO View all activities
-		// TODO Fix This and get client activities using client_id !!!!!
 		ConnectionPoolManager con = new ConnectionPoolManager();
 		List<Client> clients = new ArrayList<Client>(Client_id);
 		ActivitysDBManager.getInstance().getClientActivities(con.getConnectionFromPool(),Client_id);
 		for (Client c : clients){
-			
 			System.out.println(c);
 		}
 		System.out.println("ist<Client>" +clients );
