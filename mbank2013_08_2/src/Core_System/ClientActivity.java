@@ -1,22 +1,16 @@
 package Core_System;
 
-//import java.sql.Connection;
-//import java.util.Date;
-//import java.sql.Date;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import Data_Access.AccountsDBManager;
-//import Data_Access.AccountsManager;
 import Data_Access.ActivitysDBManager;
-//import Data_Access.ClientSManager;
 import Data_Access.ClientsDBManager;
 import Data_Access.ConnectionPoolManager;
 import Data_Access.DepositsDBManager;
-
-//import Data_Access.PropertiesDBManager;
+import Data_Access.PropertiesDBManager;
 
 public class ClientActivity {
 	private int id;
@@ -30,20 +24,24 @@ public class ClientActivity {
 	}
 	
 	/** View client details **/
-	public Client getClientDetails(Client cl) {
+	public Client getClientDetails(int client_id) {
 		//TODO validate if the client exist if not throw Mbank exception 
 		ConnectionPoolManager connn = new ConnectionPoolManager();
-		cl = ClientsDBManager.getInstance().selectClient(
-				connn.getConnectionFromPool(), cl);
-		System.out.println("your client details is , getClientDetails:   " + cl);
-		return client;
+		 client = ClientsDBManager.getInstance().selectClient(
+				connn.getConnectionFromPool(), client_id);
+		if (client_id == client.getClient_id()){
+			System.out.println("your client details is , :   " + client);
+			return client;
+		}
+		System.out.println("No Client found");
+		return null;
 	}
 
 	/**view Account Details**/
 	public Account viewAccountDetails(Account account)  throws MbankException {	 
 		ConnectionPoolManager connn = new ConnectionPoolManager();
 		client = ClientsDBManager.getInstance().selectClient(
-				connn.getConnectionFromPool(), client);
+				connn.getConnectionFromPool(), client.getClient_id());
 		account = AccountsDBManager.getInstance().getAccount(
 				connn.getConnectionFromPool(), account);
 		if (account.getClient_id() == client.getClient_id()) {
@@ -85,7 +83,7 @@ System.out.println("\n your account deails is : >>> " + account);
 			throws MbankException {
 		ConnectionPoolManager connn = new ConnectionPoolManager();
 		client = ClientsDBManager.getInstance().selectClient(
-				connn.getConnectionFromPool(), client);
+				connn.getConnectionFromPool(), client.getClient_id());
 
 		deposit.setClient_id(client.getClient_id());
 		deposit.setType(client.getType());

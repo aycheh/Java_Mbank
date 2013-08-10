@@ -24,14 +24,14 @@ public class MBank {
 	public ClientActivity login(int client_id, String password) {
 		Client cl = new Client(client_id, password);
 		cl = ClientsDBManager.getInstance().selectClient(
-				conn.getConnectionFromPool(), cl);
+				conn.getConnectionFromPool(), cl.getClient_id());
 		if (cl != null && client_id == (cl.getClient_id())
 				&& password.equals(cl.getPassword())) {
 			cl.getClient_name();
 			System.out.println(" Wellcame   : " + cl.getClient_name());
 			return new ClientActivity(cl);
 		} else {
-			System.err.println("try again");
+			System.err.println("Invalid email/password combination, try again");
 			return null;
 		}
 	}
@@ -56,10 +56,12 @@ public class MBank {
 	
 
 	public double getBalance() {
+		//TODO get Mbank balance
 		return balance;
 	}
 
 	public void setBalance(double balance) {
+		// TODO update Mbank balanceS
 		this.balance = balance;
 	}
 

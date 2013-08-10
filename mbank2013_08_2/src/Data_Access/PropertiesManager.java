@@ -2,8 +2,6 @@ package Data_Access;
 
 import java.sql.Connection;
 import java.util.List;
-
-import Core_System.Client;
 import Core_System.Properties;
 
 public interface PropertiesManager {
@@ -15,15 +13,6 @@ public interface PropertiesManager {
 	public void updateSystemProperty(Connection con, Properties p);
 	/**getAllProperties**/
 	public List<Properties> getAllProperties(Connection con);
-	
-		
-	
-		
-	
-	
-	
-	
-	
-	
+
 	
 }/**end of interface*/

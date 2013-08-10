@@ -84,7 +84,7 @@ public class AdminActivity {
 		// TODO Validate this method,what allowed when updating client!!
 		ConnectionPoolManager conn = new ConnectionPoolManager();
 		client = ClientsDBManager.getInstance().selectClient(
-				conn.getConnectionFromPool(), cl);
+				conn.getConnectionFromPool(), cl.getClient_id());
 		ClientsDBManager.getInstance().updateclients(
 				conn.getConnectionFromPool(), cl);
 		
@@ -96,7 +96,7 @@ public class AdminActivity {
 		Client cl = new Client(client_id);
 		ConnectionPoolManager conn = new ConnectionPoolManager();
 		client = ClientsDBManager.getInstance().selectClient(
-				conn.getConnectionFromPool(), cl);
+				conn.getConnectionFromPool(), cl.getClient_id());
 		if (client != null) {
 			ClientsDBManager.getInstance().deleteClient(
 					conn.getConnectionFromPool(), cl);
@@ -131,7 +131,7 @@ public class AdminActivity {
 		Client cl = new Client(client_id);
 		ConnectionPoolManager conn = new ConnectionPoolManager();
 		client = ClientsDBManager.getInstance().selectClient(
-				conn.getConnectionFromPool(), cl);
+				conn.getConnectionFromPool(), cl.getClient_id());
 		if (client != null) {
 			System.out.println("\nfrom view client : " + client);
 			return client;

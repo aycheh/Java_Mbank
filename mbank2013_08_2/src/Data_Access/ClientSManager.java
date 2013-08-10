@@ -16,7 +16,7 @@ public interface ClientSManager {
 	public void updateclients(Connection con, Client c);
 	
 	/**Selecting query from  Client using client_id*/
-	public Client selectClient(Connection con, Client c);
+	public Client selectClient(Connection con, int client_id);
 	
 
 	/**delete Account from table*/

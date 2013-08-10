@@ -48,7 +48,6 @@ public class ClientsDBManager implements ClientSManager {
 			rs.next();
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return false;
@@ -78,19 +77,18 @@ public class ClientsDBManager implements ClientSManager {
 
 	/** prepare statements to select clients */
 	@Override
-	public Client selectClient(Connection con, Client c) {
+	public Client selectClient(Connection con, int client_id) {
 		Client clientToReturn = null;
 		try {
 			PreparedStatement pstmt = con
 					.prepareStatement("select * from clients where client_id = ?");
-			pstmt.setInt(1, c.getClient_id());
+			pstmt.setInt(1, client_id);
 			ResultSet rs = pstmt.executeQuery();
 			if (rs.next()) {
 				clientToReturn = new Client(rs.getInt(1));
 				clientToReturn.setClient_id(rs.getInt(1));
 				clientToReturn.setClient_name(rs.getString(2));
 				clientToReturn.setPassword(rs.getString(3));
-				/** converting ENUM to string use -> valueOf() **/
 				clientToReturn.setType(Type.valueOf(rs.getString(4)));
 				clientToReturn.setAddress(rs.getString(5));
 				clientToReturn.setEmail(rs.getString(6));
@@ -104,7 +102,7 @@ public class ClientsDBManager implements ClientSManager {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println(clientToReturn);
+		//System.out.println(clientToReturn);
 		return clientToReturn;
 
 	}
@@ -149,7 +147,6 @@ public class ClientsDBManager implements ClientSManager {
 //	            System.out.println(client_id + "\t" + client_name +
 //	                               "\t" + password + "\t" + type +
 //	                               "\t" + address + "\t" + phone + "\t" +comment );
-	            //TODO Convert ENUM to String
 	            clients.add(new Client(client_id, client_name, password,type, address,email,phone,comment));
 	        }  
 	    } catch (SQLException e ) {
@@ -158,4 +155,4 @@ public class ClientsDBManager implements ClientSManager {
 		return clients;
 	}
 
-}// END OF CLASS
+}/** END OF CLASS**/

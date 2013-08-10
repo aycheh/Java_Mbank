@@ -30,10 +30,20 @@ public class Test {
 		/** 2. Login as Client */
 		/**Update Client throw client activity**/
 		
-		//ClientActivity clAc = b.login(4, "askon123");
+		ClientActivity activity = b.login(9, "password");
 		//TODO the permeation mast  be only for client it self and not allowed to update any other client.
-		//clAc.updateClientDetails(new Client(4, "EdenAycheh_", "password", Data_Access.Type.PLATINUM, "New Yorek","Emoachy@gmail.com", "0574704549", " try again"));
-		/**clAc.getClientDetails(new Client(13, "Kesem", "1256", Data_Access.Type.REGULAR, "New Yorek","Emoachy@gmail.com", "0574704549", "  again"));*/
+		//clAc.updateClientDetails(new Client(4, "Aycheh EdenAycheh_Eden", "1234", Data_Access.Type.PLATINUM, "New Yorek","Emoachy@gmail.com", "0574704549", " try again"));
+		//clAc.getClientDetails(new Client(13, "KesemSony", "11111", Data_Access.Type.REGULAR, "New Yorek","Emoachy@gmail.com", "0574704549", " again"));
+		//activity.viewAccountDetails(new Account(9));
+		//activity.viewAllDiposits();
+		activity.getClientDetails(18);
+		
+		
+		
+		
+		
+		
+		
 		
 		/**withdraw*/
 //		ClientActivity clAc = b.login(9, "password");
@@ -46,7 +56,6 @@ public class Test {
 //			e.printStackTrace();
 //		}
 		/**********************************************/
-		/**deposit in to Account**/
 //		ClientActivity clAc = b.login(9, "password");
 //		try {
 //			 Account ac = new Account(9, 13, 3339, 10,"2013_07_19_3");
@@ -62,7 +71,7 @@ public class Test {
 //		ClientActivity clAc = b.login(9, "password");
 //		 long ts = System.currentTimeMillis();
 //		 java.sql.Date sqlDate = new Date(ts);
-//		 Deposit deposit = new Deposit(0,1, 1970, Data_Access.Type.REGULAR, 2000,sqlDate,"2013-09-30");
+//		 Deposit deposit = new Deposit(0,9, 1970, Data_Access.Type.REGULAR, 2000,sqlDate,"2013-09-30");
 //		 clAc.createNewDeposit(deposit,10);
 		/*********************************************/
 		/**view account details**/
@@ -177,10 +186,10 @@ public class Test {
 		
 		/********************************************/
 		/**update System Property**/
-		AdminActivity act4 = b.AdminLogin( "password","admin");
+		//AdminActivity act4 = b.AdminLogin( "password","admin");
 		//act4.updateSystemProperty(new Properties("gold_daily_interest", "0.019"));
 		/**************************************************************************/
-		act4.viewSystemproperty();
+		//act4.viewSystemproperty();
 //		 for (Properties a : act4.viewSystemproperty()){
 //			System.out.println(a);;
 //			 }
