@@ -38,12 +38,15 @@ public class ClientActivity {
 	}
 
 	/**view Account Details**/
-	public Account viewAccountDetails(Account account)  throws MbankException {	 
+	public Account viewAccountDetails(int account_id)  throws MbankException {	 
 		ConnectionPoolManager connn = new ConnectionPoolManager();
 		client = ClientsDBManager.getInstance().selectClient(
 				connn.getConnectionFromPool(), client.getClient_id());
-		account = AccountsDBManager.getInstance().getAccount(
-				connn.getConnectionFromPool(), account);
+		//System.out.println(client);
+		 account = AccountsDBManager.getInstance().getAccount(
+				connn.getConnectionFromPool(), account_id);
+		
+		System.out.println(account);
 		if (account.getClient_id() == client.getClient_id()) {
 System.out.println("\n your account deails is : >>> " + account);
 			return account;
@@ -61,10 +64,10 @@ System.out.println("\n your account deails is : >>> " + account);
 	}
 
 	/**withdraw from account**/
-	public void withdraw(Account account, double amount) throws MbankException {
+	public void withdraw(int account_id, double amount) throws MbankException {
 		ConnectionPoolManager con = new ConnectionPoolManager();
 		account = AccountsDBManager.getInstance().getAccount(
-				con.getConnectionFromPool(), account);
+				con.getConnectionFromPool(), account.getAccount_id());
 		if (amount <= 0) {
 			throw new MbankException("illegal amount: " + amount);
 		}
@@ -97,11 +100,11 @@ System.out.println("\n your account deails is : >>> " + account);
 	}
 
 	/** deposit depositInToAccount balance **/
-	public void depositInToAccount(Account account, double amnout)
+	public void depositInToAccount(int account_id, double amnout)
 			throws MbankException {
 		ConnectionPoolManager con = new ConnectionPoolManager();
 		account = AccountsDBManager.getInstance().getAccount(
-				con.getConnectionFromPool(), account);
+				con.getConnectionFromPool(), account_id);
 		if (amnout <= 0) {
 			throw new MbankException("illegal amount: " + amnout);
 		}

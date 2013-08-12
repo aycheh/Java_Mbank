@@ -17,7 +17,7 @@ public interface AccountsManager {
 	public boolean deleteAccount(Connection con, Account a);
 	
 	/**Selecting query on Accounts*/
-	public Account getAccount(Connection con, Account a);
+	public Account getAccount(Connection con, int account_id);
 	/**get all Accounts**/
 	public List<Account> getAllAccounts(Connection con);
 }

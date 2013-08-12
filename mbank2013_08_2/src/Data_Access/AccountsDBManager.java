@@ -82,12 +82,12 @@ public class AccountsDBManager implements AccountsManager {
 	
 	/** selecting from account table -> (It works :) */
 	@Override
-	public Account getAccount(Connection con, Account a) {
+	public Account getAccount(Connection con, int account_id) {
 		Account AccountToReturn = null;
 		try {
 			PreparedStatement pstmt = con
 					.prepareStatement("select * from accounts where account_id =? ");
-			pstmt.setInt(1, a.getAccount_id());
+			pstmt.setInt(1, account_id);
 			ResultSet rs = pstmt.executeQuery();
 			if (rs.next()) {
 				AccountToReturn = new Account(rs.getInt(1));

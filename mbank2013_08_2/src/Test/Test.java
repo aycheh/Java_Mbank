@@ -32,11 +32,25 @@ public class Test {
 		
 		ClientActivity activity = b.login(9, "password");
 		//TODO the permeation mast  be only for client it self and not allowed to update any other client.
-		//clAc.updateClientDetails(new Client(4, "Aycheh EdenAycheh_Eden", "1234", Data_Access.Type.PLATINUM, "New Yorek","Emoachy@gmail.com", "0574704549", " try again"));
-		//clAc.getClientDetails(new Client(13, "KesemSony", "11111", Data_Access.Type.REGULAR, "New Yorek","Emoachy@gmail.com", "0574704549", " again"));
-		//activity.viewAccountDetails(new Account(9));
+		
+		
+		//activity.updateClientDetails(new Client(4, "Aycheh111", "12344", Data_Access.Type.PLATINUM, "New Yorek","Emoachy@gmail.com", "0574704549", " try again"));
+		//activity.getClientDetails(9);
+		//activity.viewAccountDetails(9);
 		//activity.viewAllDiposits();
-		activity.getClientDetails(18);
+		//activity.getClientDetails(18);
+		//activity.depositInToAccount(9, 10000);
+//		java.sql.Date sqlDate = new Date(ts);
+//		Deposit deposit = new Deposit(0,9, 1970, Data_Access.Type.REGULAR, 2000,sqlDate,"2013-09-30");
+//		activity.createNewDeposit(deposit, 1234);
+		
+		
+		
+//		ClientActivity clAc = b.login(9, "password");
+//		 long ts = System.currentTimeMillis();
+//		 java.sql.Date sqlDate = new Date(ts);
+//		 Deposit deposit = new Deposit(0,9, 1970, Data_Access.Type.REGULAR, 2000,sqlDate,"2013-09-30");
+//		 clAc.createNewDeposit(deposit,10)
 		
 		
 		

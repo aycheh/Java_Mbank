@@ -113,7 +113,7 @@ public class AdminActivity {
 		// TODO Validate this method,what allowed when Remove account
 		Account ac = new Account(account_id);
 		ConnectionPoolManager conn = new ConnectionPoolManager();
-		account = AccountsDBManager.getInstance().getAccount(conn.getConnectionFromPool(), ac);
+		account = AccountsDBManager.getInstance().getAccount(conn.getConnectionFromPool(), ac.getAccount_id());
 		if (account != null) {
 			AccountsDBManager.getInstance().deleteAccount(
 					conn.getConnectionFromPool(), ac);
