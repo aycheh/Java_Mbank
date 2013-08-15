@@ -122,8 +122,22 @@ System.out.println("\n your account deails is : >>> " + account);
 			for (Deposit d : deposits){
 			System.out.println(d);	
 			}
-		return null;
+		return deposits;
 	}
+		
+		//getAllClientDeposits
+		
+		public List<Deposit> viewAllClientDeposits(int client_id){
+			List<Deposit> deposits = new ArrayList<Deposit>();
+			ConnectionPoolManager con = new ConnectionPoolManager();
+			deposits = DepositsDBManager.getInstance().getAllClientDeposits(con.getConnectionFromPool(),client_id);
+			for (Deposit d : deposits){
+			System.out.println(d);	
+			}
+		return deposits;
+	}
+		
+		
 	
 	/**close Deposit it should be automatic**/
 	public void closeDeposit() {

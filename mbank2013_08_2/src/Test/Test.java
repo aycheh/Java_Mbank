@@ -30,7 +30,7 @@ public class Test {
 		/** 2. Login as Client */
 		/**Update Client throw client activity**/
 		
-		ClientActivity activity = b.login(9, "password");
+		ClientActivity activity = b.login(20, "12345");
 		//TODO the permeation mast  be only for client it self and not allowed to update any other client.
 		
 		
@@ -43,6 +43,9 @@ public class Test {
 //		java.sql.Date sqlDate = new Date(ts);
 //		Deposit deposit = new Deposit(0,9, 1970, Data_Access.Type.REGULAR, 2000,sqlDate,"2013-09-30");
 //		activity.createNewDeposit(deposit, 1234);
+		//activity.viewAllDiposits();
+		activity.viewAllClientDeposits(20);
+		
 		
 		
 		
