@@ -44,7 +44,8 @@ public class Test {
 //		Deposit deposit = new Deposit(0,9, 1970, Data_Access.Type.REGULAR, 2000,sqlDate,"2013-09-30");
 //		activity.createNewDeposit(deposit, 1234);
 		//activity.viewAllDiposits();
-		activity.viewAllClientDeposits(20);
+//		activity.viewAllClientDeposits(20);
+		activity.withdraw(14, 999);
 		
 		
 		

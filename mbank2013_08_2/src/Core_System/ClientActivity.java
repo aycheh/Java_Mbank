@@ -66,8 +66,8 @@ System.out.println("\n your account deails is : >>> " + account);
 	/**withdraw from account**/
 	public void withdraw(int account_id, double amount) throws MbankException {
 		ConnectionPoolManager con = new ConnectionPoolManager();
-		account = AccountsDBManager.getInstance().getAccount(
-				con.getConnectionFromPool(), account.getAccount_id());
+		Account ac = new Account(account_id);
+		account = AccountsDBManager.getInstance().getAccount(con.getConnectionFromPool(), ac.getAccount_id());
 		if (amount <= 0) {
 			throw new MbankException("illegal amount: " + amount);
 		}
