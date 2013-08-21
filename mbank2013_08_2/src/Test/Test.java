@@ -45,7 +45,7 @@ public class Test {
 //		activity.createNewDeposit(deposit, 1234);
 		//activity.viewAllDiposits();
 //		activity.viewAllClientDeposits(20);
-		activity.withdraw(14, 999);
+		activity.withdraw(1, 1);
 		
 		
 		

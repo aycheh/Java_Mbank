@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.swing.text.StyledEditorKit.BoldAction;
+
 import Data_Access.AccountsDBManager;
 import Data_Access.ActivitysDBManager;
 import Data_Access.ClientsDBManager;
@@ -64,20 +66,26 @@ System.out.println("\n your account deails is : >>> " + account);
 	}
 
 	/**withdraw from account**/
-	public void withdraw(int account_id, double amount) throws MbankException {
+	public boolean withdraw(int account_id, double amount) throws MbankException {
+		boolean withdraw  = false;
 		ConnectionPoolManager con = new ConnectionPoolManager();
 		Account ac = new Account(account_id);
 		account = AccountsDBManager.getInstance().getAccount(con.getConnectionFromPool(), ac.getAccount_id());
 		if (amount <= 0) {
+			
 			throw new MbankException("illegal amount: " + amount);
 		}
 		if (account.getBalance() - amount > account.getCredit_limit()) {
 			account.setBalance(account.getBalance() - amount);
 			AccountsDBManager.getInstance().updateAccount(
 					con.getConnectionFromPool(), account);
+			 withdraw  = true;
 		} else {
+			
 			throw new MbankException("you don't have sufficient credit");
 		}
+		System.out.println(withdraw);
+		return  withdraw;
 	}
 
 	/**createNewDeposit in to Deposit Table**/
