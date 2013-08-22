@@ -18,6 +18,8 @@ public interface AccountsManager {
 	
 	/**Selecting query on Accounts*/
 	public Account getAccount(Connection con, int account_id);
+	/**get get Account By ClientId**/
+	public Account getAccountByClientId(Connection con, int client_id);
 	/**get all Accounts**/
 	public List<Account> getAllAccounts(Connection con);
 }

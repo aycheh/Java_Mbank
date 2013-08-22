@@ -30,13 +30,13 @@ public class Test {
 		/** 2. Login as Client */
 		/**Update Client throw client activity**/
 		
-		ClientActivity activity = b.login(20, "12345");
+		ClientActivity activity = b.login(14, "12345");
 		//TODO the permeation mast  be only for client it self and not allowed to update any other client.
 		
 		
 		//activity.updateClientDetails(new Client(4, "Aycheh111", "12344", Data_Access.Type.PLATINUM, "New Yorek","Emoachy@gmail.com", "0574704549", " try again"));
 		//activity.getClientDetails(9);
-		//activity.viewAccountDetails(9);
+//		activity.viewAccountDetails(14);
 		//activity.viewAllDiposits();
 		//activity.getClientDetails(18);
 		//activity.depositInToAccount(9, 10000);
@@ -45,7 +45,8 @@ public class Test {
 //		activity.createNewDeposit(deposit, 1234);
 		//activity.viewAllDiposits();
 //		activity.viewAllClientDeposits(20);
-		activity.withdraw(1, 1);
+//		activity.withdraw(1, 1);
+		activity.getAccountBy_Id(14);
 		
 		
 		

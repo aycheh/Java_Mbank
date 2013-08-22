@@ -44,7 +44,6 @@ public class ClientActivity {
 		ConnectionPoolManager connn = new ConnectionPoolManager();
 		client = ClientsDBManager.getInstance().selectClient(
 				connn.getConnectionFromPool(), client.getClient_id());
-		//System.out.println(client);
 		 account = AccountsDBManager.getInstance().getAccount(
 				connn.getConnectionFromPool(), account_id);
 		
@@ -145,6 +144,17 @@ System.out.println("\n your account deails is : >>> " + account);
 		return deposits;
 	}
 		
+	
+		
+		/**get Account By Id from client action**/
+		public Account getAccountBy_Id(int client_id) {
+			ConnectionPoolManager con = new ConnectionPoolManager();
+			client = ClientsDBManager.getInstance().selectClient(con.getConnectionFromPool(), client_id);
+			Account ac = new Account(client.getClient_id());
+			ac = AccountsDBManager.getInstance().getAccountByClientId(con.getConnectionFromPool(), client.getClient_id());
+			System.out.println("get Account By Id from client action  " + ac);
+			return ac;
+		}
 		
 	
 	/**close Deposit it should be automatic**/

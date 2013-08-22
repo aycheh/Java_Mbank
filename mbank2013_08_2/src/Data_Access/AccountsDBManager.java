@@ -145,6 +145,36 @@ public class AccountsDBManager implements AccountsManager {
  
 		return accounts;
 	}
+
+	@Override
+	public Account getAccountByClientId(Connection con, int client_id) {
+		System.out.println("AccountToReturnByClientId    111111111111: >>> ");
+		Account AccountToReturnByClientId = null;
+		try {
+			PreparedStatement pstmt = con
+					.prepareStatement("select * from accounts where client_id=? ");
+			pstmt.setInt(1, client_id);
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				AccountToReturnByClientId = new Account(rs.getInt(1));
+				AccountToReturnByClientId.setAccount_id(rs.getInt(1));
+				AccountToReturnByClientId.setClient_id(rs.getInt(2));
+				AccountToReturnByClientId.setBalance(rs.getDouble(3));
+				AccountToReturnByClientId.setCredit_limit(rs.getDouble(4));
+				AccountToReturnByClientId.setComment(rs.getString(5));
+				
+				System.out.println("AccountToReturnByClientId    : >>> "+AccountToReturnByClientId);
+				return AccountToReturnByClientId;
+			} else {
+				System.err.println("No client_id founed");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		System.out.println("bbbbbbbbbbbbbbbbbbbbbbbbbbbb by acoient_id :" + AccountToReturnByClientId);
+		return null; 
+		
+	}
 	
 	
 	
