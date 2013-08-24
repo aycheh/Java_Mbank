@@ -10,11 +10,11 @@ public class Deposit {
 	private double balance;
 	private Type type;
 	private double estimated_balance;
-	private Date opening_date;
+	private String opening_date;
 	private String closing_date;
 
 	public Deposit(int deposit_id, int client_id, double balance, Type type,
-			long estimated_balance, Date opening_date, String closing_date) {
+			long estimated_balance, String opening_date, String closing_date) {
 		super();
 		this.deposit_id = deposit_id;
 		this.client_id = client_id;
@@ -77,11 +77,11 @@ public class Deposit {
 		this.estimated_balance = estimated_balance;
 	}
 
-	public Date getOpening_date() {
+	public String getOpening_date() {
 		return opening_date;
 	}
 
-	public void setOpening_date(Date opening_date) {
+	public void setOpening_date(String opening_date) {
 		this.opening_date = opening_date;
 	}
 

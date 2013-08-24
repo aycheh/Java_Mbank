@@ -13,6 +13,7 @@ import Data_Access.ClientsDBManager;
 import Data_Access.ConnectionPoolManager;
 import Data_Access.DepositsDBManager;
 import Data_Access.PropertiesDBManager;
+import Data_Access.Type;
 
 public class ClientActivity {
 	private int id;
@@ -32,7 +33,7 @@ public class ClientActivity {
 		 client = ClientsDBManager.getInstance().selectClient(
 				connn.getConnectionFromPool(), client_id);
 		if (client_id == client.getClient_id()){
-			System.out.println("your client details is , :   " + client);
+			//System.out.println("your client details is , :   " + client);
 			return client;
 		}
 		System.out.println("No Client found");
@@ -93,17 +94,26 @@ System.out.println("\n your account deails is : >>> " + account);
 
 	/**createNewDeposit in to Deposit Table**/
 	/***** @throws MbankException**/
-	public void createNewDeposit(Deposit deposit, double amnout)
+	public void createNewDeposit(Deposit deposit)
 			throws MbankException {
+		
 		ConnectionPoolManager connn = new ConnectionPoolManager();
 		client = ClientsDBManager.getInstance().selectClient(
 				connn.getConnectionFromPool(), client.getClient_id());
 
 		deposit.setClient_id(client.getClient_id());
 		deposit.setType(client.getType());
-		if (amnout <= 0) {
-			throw new MbankException("illegal amount: " + amnout);
+		if (deposit.getBalance() <= 0) {
+			throw new MbankException("illegal amount: " + deposit.getBalance());
 		}
+		if(client.getType() == Data_Access.Type.REGULAR ){
+			deposit.setEstimated_balance((deposit.getBalance() * 0.5)+(deposit.getBalance()));
+		} else if (client.getType() == Data_Access.Type.GOLD ){
+			deposit.setEstimated_balance((deposit.getBalance() * 0.7)+(deposit.getBalance()));
+		}else if (client.getType() == Data_Access.Type.PLATINUM ){
+			deposit.setEstimated_balance((deposit.getBalance() * 0.8)+(deposit.getBalance()));
+		}
+
 		DepositsDBManager.getInstance().createNewDeposit(
 				connn.getConnectionFromPool(), deposit);
 		// TODO close the client Deposits when the closing date is arrive.

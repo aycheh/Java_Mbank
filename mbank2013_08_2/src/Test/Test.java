@@ -30,19 +30,25 @@ public class Test {
 		/** 2. Login as Client */
 		/**Update Client throw client activity**/
 		
-		ClientActivity activity = b.login(1, "12345");
+		ClientActivity activity = b.login(56, "password");
 		//TODO the permeation mast  be only for client it self and not allowed to update any other client.
 		
 		
 		//activity.updateClientDetails(new Client(1, "Aycheh2", "12345", Data_Access.Type.PLATINUM, "New Yorek","Emoachy@gmail.com", "0574704549", " try again"));
+		
 		//activity.getClientDetails(9);
+		
 //		activity.viewAccountDetails(14);
 		//activity.viewAllDiposits();
 		//activity.getClientDetails(18);
 		//activity.depositInToAccount(9, 10000);
-//		java.sql.Date sqlDate = new Date(ts);
-//		Deposit deposit = new Deposit(0,9, 1970, Data_Access.Type.REGULAR, 2000,sqlDate,"2013-09-30");
-//		activity.createNewDeposit(deposit, 1234);
+		//java.sql.Date sqlDate = new Date(ts);
+		
+//		Deposit deposit = new Deposit(0,9, 1970, Data_Access.Type.REGULAR, 2000,"2013-08-23","2014-09-30");
+//		Deposit deposit = new Deposit(0,9, 1000, null, 0,"2013-08-23","2014-09-30");
+//		Deposit deposit = new Deposit(int deposit_id,int client_id,double balance,Type type,long estimated_balance,String opneng_date, String closing_date);
+//		activity.createNewDeposit(deposit);
+//		System.out.println("deposit..............."+deposit);
 		//activity.viewAllDiposits();
 //		activity.viewAllClientDeposits(20);
 //		activity.withdraw(1, 1);
