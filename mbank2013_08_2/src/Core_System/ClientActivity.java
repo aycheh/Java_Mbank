@@ -57,11 +57,15 @@ System.out.println("\n your account deails is : >>> " + account);
 	}
 
 	/**update Client Details**/
-	public void updateClientDetails(Client cl) {
-		ConnectionPoolManager connn = new ConnectionPoolManager();
+	public void updateClientDetails(Client client) throws MbankException {
+		ConnectionPoolManager con = new ConnectionPoolManager();
+		if (ClientsDBManager.getInstance().selectClient(con.getConnectionFromPool(), client.getClient_id()) !=null){
 		ClientsDBManager.getInstance().updateclients(
-				connn.getConnectionFromPool(), cl);
-		System.out.println("\n your Client Details is updated  :" + cl);
+				con.getConnectionFromPool(), client);
+		System.out.println("\n your Client Details is updated  :" + client);
+		}else{
+			throw new MbankException("update Failed");
+		}
 	}
 
 	/**withdraw from account**/
@@ -129,6 +133,7 @@ System.out.println("\n your account deails is : >>> " + account);
 			for (Deposit d : deposits){
 			System.out.println(d);	
 			}
+
 		return deposits;
 	}
 		
@@ -141,6 +146,7 @@ System.out.println("\n your account deails is : >>> " + account);
 			for (Deposit d : deposits){
 			System.out.println(d);	
 			}
+			
 		return deposits;
 	}
 		
