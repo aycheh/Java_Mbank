@@ -40,7 +40,7 @@ public class Test {
 		
 //		activity.viewAccountDetails(14);
 		//activity.viewAllDiposits();
-		//activity.getClientDetails(18);
+//		activity.getClientDetails(4444);
 		//activity.depositInToAccount(9, 10000);
 		//java.sql.Date sqlDate = new Date(ts);
 		
