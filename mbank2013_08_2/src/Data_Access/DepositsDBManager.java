@@ -43,8 +43,8 @@ public class DepositsDBManager implements DepositsManager {
 			pstmt.setDouble(3, (int) d.getBalance());
 			pstmt.setString(4, d.getType().name());
 			pstmt.setDouble(5, d.getEstimated_balance());
-			pstmt.setDate(6, (Date) d.getOpening_date());
-			//pstmt.setDate(7, (Date) d.getClosing_date());
+			pstmt.setString(6, (String) d.getOpening_date());
+			pstmt.setString(7, (String) d.getClosing_date());
 			pstmt.setString(7, d.getClosing_date());
 			ResultSet rs = pstmt.getGeneratedKeys();
 				pstmt.executeUpdate();
@@ -63,7 +63,7 @@ public class DepositsDBManager implements DepositsManager {
 					.prepareStatement("update deposit set type=?, estimated_balance =?, opning_date = ?, closing_date ,= ?, balance= ?, where deposit_id = ?");
 			pstmt.setString(1, d.getType().name());
 			pstmt.setDouble(2, d.getEstimated_balance());
-			pstmt.setDate(3, (Date) d.getOpening_date());
+			pstmt.setString(3, (String) d.getOpening_date());
 			//pstmt.setDate(4, (Date) d.getClosing_date());
 			pstmt.setString(4, d.getClosing_date());
 			pstmt.setDouble(5, d.getBalance());
@@ -97,7 +97,7 @@ public class DepositsDBManager implements DepositsManager {
 				//TODO fix returning value of ENUM for Type
 			    depositToReturn.setType(Type.valueOf(rs.getString(4)));
 				depositToReturn.setEstimated_balance(rs.getDouble(5));
-				depositToReturn.setOpening_date((Date) rs.getDate(6));
+				depositToReturn.setOpening_date((String) rs.getString(6));
 				depositToReturn.setClosing_date(rs.getString(7));
 			}} catch (SQLException e) {
 				System.out.println("No Deposit found");
@@ -124,13 +124,14 @@ public class DepositsDBManager implements DepositsManager {
 	            Double balance = rs.getDouble("balance");
 	            Type type = Type.valueOf(rs.getString("type"));
 	            Double estimated_balance = rs.getDouble("estimated_balance");
-	            Date opning_date = rs.getDate("opning_date");
+	            String opning_date = rs.getString("opning_date");
 	            String closing_date = rs.getString("closing_date");
 	    
 //	            System.out.println("\n"+deposit_id + "\t" + client_id +
 //	                               "\t" + balance + "\t" + type +
-//	                               "\t" + estimated_balance + "\t" + opning_date + "\t" + closing_date);           
-	            deposits.add(new Deposit(deposit_id, client_id, balance,type, estimated_balance.longValue(),(java.util.Date)opning_date, closing_date  ));
+//	                               "\t" + estimated_balance + "\t" + opning_date + "\t" + closing_date);
+	            deposits.add(new Deposit(deposit_id,client_id,balance,type,estimated_balance.longValue(),opning_date,closing_date));
+	            //deposits.add(new Deposit(deposit_id, client_id, balance,type, estimated_balance.longValue(),opning_date, closing_date  ));
 	        }  
 	    } catch (SQLException e ) {
 	    	System.out.println(query);
@@ -156,13 +157,13 @@ public class DepositsDBManager implements DepositsManager {
 	            Double balance = rs.getDouble("balance");
 	            Type type = Type.valueOf(rs.getString("type"));
 	            Double estimated_balance = rs.getDouble("estimated_balance");
-	            Date opning_date = rs.getDate("opning_date");
+	            String opning_date = rs.getString("opning_date");
 	            String closing_date = rs.getString("closing_date");
 	    
 //	            System.out.println("\n"+deposit_id + "\t" + client_id +
 //	                               "\t" + balance + "\t" + type +
 //	                               "\t" + estimated_balance + "\t" + opning_date + "\t" + closing_date);           
-	            deposits.add(new Deposit(deposit_id, client_id1, balance,type, estimated_balance.longValue(),(java.util.Date)opning_date, closing_date  ));
+	            deposits.add(new Deposit(deposit_id, client_id1, balance,type, estimated_balance.longValue(),opning_date, closing_date  ));
 	        }  
 	    } catch (SQLException e ) {
 	    	System.out.println(query);

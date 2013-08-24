@@ -94,7 +94,7 @@ public class ClientsDBManager implements ClientSManager {
 				clientToReturn.setEmail(rs.getString(6));
 				clientToReturn.setPhone(rs.getString(7));
 				clientToReturn.setComment(rs.getString(8));
-
+				
 			} else {
 				System.err.println("No client founed");
 			}
@@ -102,9 +102,8 @@ public class ClientsDBManager implements ClientSManager {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		//System.out.println(clientToReturn);
+		System.out.println("clientToReturn 1111111111111111111 :" +clientToReturn);
 		return clientToReturn;
-
 	}
 
 	@Override
