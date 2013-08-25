@@ -51,7 +51,7 @@ public class Test {
 //		System.out.println("deposit..............."+deposit);
 		//activity.viewAllDiposits();
 //		activity.viewAllClientDeposits(20);
-//		activity.withdraw(1, 1);
+		activity.withdraw(1, 3768);
 //		activity.getAccountBy_Id(14);
 //		activity.viewAllClientDeposits(9);
 		

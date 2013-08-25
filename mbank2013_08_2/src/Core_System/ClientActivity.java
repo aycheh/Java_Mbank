@@ -53,7 +53,7 @@ System.out.println("\n your account deails is : >>> " + account);
 			return account;
 		} else {
 		}
-		throw new MbankException("  No account Found  :(");
+		throw new MbankException("  No account Found ");
 	}
 
 	/**update Client Details**/
@@ -78,7 +78,7 @@ System.out.println("\n your account deails is : >>> " + account);
 			
 			throw new MbankException("illegal amount: " + amount);
 		}
-		if (account.getBalance() - amount > account.getCredit_limit()) {
+		if (account.getBalance() - amount >= (account.getCredit_limit()*(-1))) {
 			account.setBalance(account.getBalance() - amount);
 			AccountsDBManager.getInstance().updateAccount(
 					con.getConnectionFromPool(), account);
