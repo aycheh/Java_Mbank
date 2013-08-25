@@ -212,15 +212,14 @@ public class AdminActivity {
 
 	
 	
-	public List<Client> ViewClientActivities(int Client_id) {
+	public List<Activity> ViewClientActivities(int Client_id) {
 		ConnectionPoolManager con = new ConnectionPoolManager();
-		List<Client> clients = new ArrayList<Client>(Client_id);
-		ActivitysDBManager.getInstance().getClientActivities(con.getConnectionFromPool(),Client_id);
-		for (Client c : clients){
+		List<Activity> activitys = new ArrayList<Activity>(Client_id);
+		activitys = ActivitysDBManager.getInstance().getClientActivities(con.getConnectionFromPool(),Client_id);
+		for (Activity c : activitys){
 			System.out.println(c);
 		}
-		System.out.println("ist<Client>" +clients );
-		return clients;
+		return activitys;
 	}
 	
 	

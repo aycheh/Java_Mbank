@@ -147,8 +147,7 @@ public class DepositsDBManager implements DepositsManager {
 		
 	    List<Deposit> deposits = new ArrayList<Deposit>();
 	    try {
-	    	PreparedStatement pstmt = con
-	    			.prepareStatement(query);
+	    	PreparedStatement pstmt = con.prepareStatement(query);
 	    	pstmt.setInt(1, client_id );
 	    	ResultSet rs = pstmt.executeQuery();
 	        while (rs.next()) {

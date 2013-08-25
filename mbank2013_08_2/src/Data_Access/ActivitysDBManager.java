@@ -52,15 +52,12 @@ private static ActivitysDBManager instance;
 	
 	@Override
 	public List<Activity> getClientActivities(Connection con, int Client_id) {
-		// TODO Fix This and get client activities using client_id !!!!!
-		Statement stmt = null;
-	    String query = "select id, client_id, amount, activity_date, commission,description "  + "from "  + " activity"; 
-	    		//("select * from activity where client_id = ?" );
-	       // ("select id, client_id, amount, activity_date, commission,description from activity  where  client_id  = ?");
+	    String query = ("select * from activity where client_id =?");
 	    List<Activity> clientActivitys = new ArrayList<Activity>(Client_id);
 	    try {
-	        stmt = con.createStatement();
-	        ResultSet rs = stmt.executeQuery(query);
+	    	PreparedStatement pstmt = con.prepareStatement(query);
+	        pstmt.setInt(1, Client_id );
+	        ResultSet rs = pstmt.executeQuery();
 	        while (rs.next()) {
 	            int id = rs.getInt("id");
 	            int client_id = rs.getInt("client_id");
@@ -72,8 +69,8 @@ private static ActivitysDBManager instance;
 //	            System.out.println(id + "\t" + client_id +
 //	                               "\t" + amount + "\t" + activity_date +
 //	                               "\t" + commission + "\t" + description + "\t" );
-	           	
-	            clientActivitys.add(new Activity(id ,client_id, amount, activity_date,commission,description));
+
+	           	clientActivitys.add(new Activity(id ,client_id, amount, activity_date,commission,description));
 	        }  
 	    } catch (SQLException e ) {
 	    	System.err.println("No Date to return >>>>>>>> : "+query);

@@ -30,7 +30,7 @@ public class Test {
 		/** 2. Login as Client */
 		/**Update Client throw client activity**/
 		
-		ClientActivity activity = b.login(56, "password");
+//		ClientActivity activity = b.login(56, "password");
 		//TODO the permeation mast  be only for client it self and not allowed to update any other client.
 		
 		
@@ -51,7 +51,7 @@ public class Test {
 //		System.out.println("deposit..............."+deposit);
 		//activity.viewAllDiposits();
 //		activity.viewAllClientDeposits(20);
-		activity.withdraw(1, 3768);
+//		activity.withdraw(1, 3768);
 //		activity.getAccountBy_Id(14);
 //		activity.viewAllClientDeposits(9);
 		
@@ -108,9 +108,15 @@ public class Test {
 		
 
 		/**admin login*/
-	//	b.AdminLogin("system", "admin");
+		//b.AdminLogin("system", "admin");
 		
-//		AdminActivity act =  b.AdminLogin("system", "admin");
+		
+//
+		
+		AdminActivity act =  b.AdminLogin("username", "system");
+		act.ViewClientActivities(1);
+		//act.viewAllActivities();
+		
 //		 Client cl = new Client(0, "Dabur", "qw23rt",
 //		 Data_Access.Type.REGULAR,
 //		 "New Yorek ", "EDabur@gmail.com", "0574704549",
