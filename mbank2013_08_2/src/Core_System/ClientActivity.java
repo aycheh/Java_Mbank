@@ -133,8 +133,8 @@ System.out.println("\n your account deails is : >>> " + account);
 				con.getConnectionFromPool(), account);
 	}
 	
-//	/** View client deposits**/
-//		// TODO View client deposits, validation ... 
+	/** View client deposits**/
+		// TODO View client deposits, validation ... 
 //		public List<Deposit> viewAllDiposits(){
 //			List<Deposit> deposits = new ArrayList<Deposit>();
 //			ConnectionPoolManager con = new ConnectionPoolManager();

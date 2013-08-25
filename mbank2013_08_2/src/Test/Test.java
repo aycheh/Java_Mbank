@@ -113,8 +113,8 @@ public class Test {
 		
 //
 		
-		AdminActivity act =  b.AdminLogin("username", "system");
-		act.ViewClientActivities(1);
+		//AdminActivity act =  b.AdminLogin("username", "system");
+		//act.ViewClientActivities(1);
 		//act.viewAllActivities();
 		
 //		 Client cl = new Client(0, "Dabur", "qw23rt",
