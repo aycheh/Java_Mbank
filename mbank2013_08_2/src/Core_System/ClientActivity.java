@@ -1,12 +1,11 @@
 package Core_System;
 
 import java.sql.Connection;
+import java.sql.Date;
+
+
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-
-import javax.swing.text.StyledEditorKit.BoldAction;
-
 import Data_Access.AccountsDBManager;
 import Data_Access.ActivitysDBManager;
 import Data_Access.ClientsDBManager;
@@ -82,13 +81,31 @@ System.out.println("\n your account deails is : >>> " + account);
 			account.setBalance(account.getBalance() - amount);
 			AccountsDBManager.getInstance().updateAccount(
 					con.getConnectionFromPool(), account);
-			 withdraw  = true;
+			withdraw  = true;
+//			Client cl = new Client(ac.getClient_id());
+//			String commission = "0.5"; 
+//			String description = "withdraw";
+			
+//			java.util.Date utilDate = new java.sql.Date(System.currentTimeMillis());
+			// Convert it to java.sql.Date
+//			java.sql.Date sqlDate = (Date) utilDate; 
+			
+//			//long t = today.getTime();
+//			//java.sql.Date dt = new java.sql.Date(t);
+			
+//			List<Properties> properties1 = new ArrayList<Properties>();
+			
+//			properties1 = PropertiesDBManager.getInstance().getAllProperties(con.getConnectionFromPool());
+			// DTOD i need to resolve the date problem
+//			Activity act = new Activity(0, cl.getClient_id(), amount,sqlDate, commission, description);
+//			ActivitysDBManager.getInstance().createNewActivity(con.getConnectionFromPool(), act);
 		} else {
 			
 			throw new MbankException("you don't have sufficient credit");
 		}
 		System.out.println(withdraw);
 		return  withdraw;
+		
 	}
 
 	/**createNewDeposit in to Deposit Table**/
@@ -133,20 +150,9 @@ System.out.println("\n your account deails is : >>> " + account);
 				con.getConnectionFromPool(), account);
 	}
 	
-	/** View client deposits**/
-		// TODO View client deposits, validation ... 
-//		public List<Deposit> viewAllDiposits(){
-//			List<Deposit> deposits = new ArrayList<Deposit>();
-//			ConnectionPoolManager con = new ConnectionPoolManager();
-//			deposits = DepositsDBManager.getInstance().getAllDiposits(con.getConnectionFromPool());
-//			for (Deposit d : deposits){
-//			System.out.println(d);	
-//			}
-//
-//		return deposits;
-//	}
+
 		
-		//getAllClientDeposits
+		/**getAllClientDeposits**/
 		
 		public List<Deposit> viewAllClientDeposits(int client_id){
 			List<Deposit> deposits = new ArrayList<Deposit>();
@@ -171,11 +177,39 @@ System.out.println("\n your account deails is : >>> " + account);
 			return ac;
 		}
 		
+		public List<Activity> ViewClientActivities(int Client_id) throws MbankException {
+			ConnectionPoolManager con = new ConnectionPoolManager();
+			List<Activity> activitys = new ArrayList<Activity>(Client_id);
+			activitys = ActivitysDBManager.getInstance().getClientActivities(con.getConnectionFromPool(),Client_id);
+				for (Activity c : activitys)
+					System.out.println(c);
+		return activitys;
+		}
+
+		
 	
 	/**close Deposit it should be automatic**/
-	public void closeDeposit() {
-		// TODO closeDeposit it should be automatic
-	}
+	public void PreOpenDeposit(int deposit_id , int client_id, int account_id) throws MbankException {		
+		ConnectionPoolManager con = new ConnectionPoolManager();
+		Client cl = new Client(client_id);
+		Deposit dp = new Deposit(deposit_id);
+		dp = DepositsDBManager.getInstance().getDepositById(con.getConnectionFromPool(), dp.getDeposit_id());
+			
+		if (cl.getClient_id() !=(dp.getClient_id())) {
+			throw new MbankException("No deposit found for this client: check yout deposit ID");
+		} else if (dp.getBalance() >= 1){
+			Account ac = new Account(account_id);
+			ac = AccountsDBManager.getInstance().getAccount(con.getConnectionFromPool(), ac.getAccount_id());
+			ac.setBalance(dp.getBalance() + ac.getBalance() - (dp.getBalance() * 0.1));
+			
+			AccountsDBManager.getInstance().updateAccount(con.getConnectionFromPool(), ac);
+			dp.setBalance(0);		
+			DepositsDBManager.getInstance().updateDeposit(con.getConnectionFromPool(), dp);		
+		}else {
+			throw new MbankException("cant run the method  seccse........");	
+		} 
+ }
+	
 
 	/**pre Open Deposit**/
 	public void preOpenDeposit() {
@@ -184,8 +218,8 @@ System.out.println("\n your account deails is : >>> " + account);
 
 
 	
-	public double getClientBalance() {
-		// TODO Auto-generated method stub
-		return this.account.getBalance();
-	}
+//	public double getClientBalance() {
+//		// TODO Auto-generated method stub
+//		return this.account.getBalance();
+//	}
 }

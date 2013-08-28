@@ -77,18 +77,15 @@ public class PropertiesDBManager implements PropertiesManager {
 			while (rs.next()) {
 				String prop_key = rs.getString("prop_key");
 				String prop_value = rs.getString("prop_value");
-
 				// System.out.println(prop_key + "\t" + prop_value);
-
 				properties.add(new Properties(prop_key, prop_value));
 			}
 		} catch (SQLException e) {
 			System.err.println("No Properties founed");
-
 		}
 
 		for (Properties p : properties) {
-			System.out.println(p);
+			//System.out.println(p);
 		}
 		return properties;
 	}

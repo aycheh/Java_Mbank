@@ -212,35 +212,46 @@ public class AdminActivity {
 
 	
 	
-	public List<Activity> ViewClientActivities(int Client_id) {
+	public List<Activity> ViewClientActivities(int Client_id) throws MbankException{
 		ConnectionPoolManager con = new ConnectionPoolManager();
 		List<Activity> activitys = new ArrayList<Activity>(Client_id);
 		activitys = ActivitysDBManager.getInstance().getClientActivities(con.getConnectionFromPool(),Client_id);
+		if (activitys !=null){
 		for (Activity c : activitys){
 			System.out.println(c);
 		}
 		return activitys;
+		}else {
+
+			throw new MbankException("\nNo Client found");
+		}
 	}
 	
 	
 
-	public void updateSystemProperty(Properties p) {
+	public void updateSystemProperty(Properties p) throws MbankException {
+		if(p !=null){
 		ConnectionPoolManager conn = new ConnectionPoolManager();
 		Properties p1 = new Properties(p.getProp_key(),p.getProp_value());
 		PropertiesDBManager.getInstance().updateSystemProperty(conn.getConnectionFromPool(),p1);
 		System.out.println(p);
-	
+		}else {
+			throw new MbankException("\nNo Syste mproperty found");
+		}
 	}
 
-	public List<Properties> viewSystemproperty() {
-		
+	public List<Properties> viewSystemproperty() throws MbankException {
 		ConnectionPoolManager con = new ConnectionPoolManager();
-		List<Properties> properties = new ArrayList<Properties>();;
-		PropertiesDBManager.getInstance().getAllProperties(con.getConnectionFromPool());
-		for (Properties p : properties){
-		System.out.println(p);
+		List<Properties> properties = new ArrayList<Properties>();
+		properties = PropertiesDBManager.getInstance().getAllProperties(con.getConnectionFromPool());
+		if (properties != null){
+			for(Properties p : properties){
+				System.out.println(p);
+			}
+			return properties;
+		}else {
+			throw new MbankException("\nNo Syste mproperty found");	
 		}
-		return properties;
 	}
 
 }

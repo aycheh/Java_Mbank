@@ -60,7 +60,7 @@ public class DepositsDBManager implements DepositsManager {
 
 		try {
 			PreparedStatement pstmt = con
-					.prepareStatement("update deposit set type=?, estimated_balance =?, opning_date = ?, closing_date ,= ?, balance= ?, where deposit_id = ?");
+					.prepareStatement("update deposit set type=?, estimated_balance =?, opning_date = ?, closing_date = ?, balance= ? where deposit_id = ?");
 			pstmt.setString(1, d.getType().name());
 			pstmt.setDouble(2, d.getEstimated_balance());
 			pstmt.setString(3, (String) d.getOpening_date());
@@ -168,6 +168,33 @@ public class DepositsDBManager implements DepositsManager {
 	    	System.out.println(query);
 	    }
 		return deposits;
+	}
+
+	@Override
+	public Deposit getDepositById(Connection con, int deposit_id) {
+		Deposit depositToReturn = null;
+		try {
+			PreparedStatement pstmt = con
+					.prepareStatement("select * from deposit where deposit_id = ?");
+			pstmt.setInt(1,  deposit_id);
+			ResultSet rs = pstmt.executeQuery();
+			
+			if (rs.next()){
+				depositToReturn = new Deposit(rs.getInt(1));
+				depositToReturn.setDeposit_id(rs.getInt(1));
+				depositToReturn.setClient_id(rs.getInt(2));
+				depositToReturn.setBalance(rs.getDouble(3));
+				depositToReturn.setType(Type.valueOf(rs.getString(4)));
+				depositToReturn.setEstimated_balance(rs.getDouble(5));
+				depositToReturn.setOpening_date(rs.getString(6));
+				//depositToReturn.setClosing_date((String)rs.getString(7));
+				depositToReturn.setClosing_date(rs.getString(7));
+			}} catch (SQLException e) {
+				System.out.println("No Deposit found");
+			e.printStackTrace();
+		}
+		return depositToReturn;
+
 	}
 		
 

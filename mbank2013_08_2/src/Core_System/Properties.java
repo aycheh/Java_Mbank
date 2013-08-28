@@ -59,6 +59,11 @@ public class Properties {
 		
 	}
 	
+	public Properties(){
+		
+	}
+	
+	
 
 public String getProp_key() {
 

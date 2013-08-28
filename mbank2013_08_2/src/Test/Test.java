@@ -30,19 +30,24 @@ public class Test {
 		/** 2. Login as Client */
 		/**Update Client throw client activity**/
 		
-//		ClientActivity activity = b.login(56, "password");
+//		ClientActivity activity = b.login(9, "12345");
 		//TODO the permeation mast  be only for client it self and not allowed to update any other client.
 		
 		
 		//activity.updateClientDetails(new Client(1, "Aycheh2", "12345", Data_Access.Type.PLATINUM, "New Yorek","Emoachy@gmail.com", "0574704549", " try again"));
-		
+//		activity.ViewClientActivities(0);
 		//activity.getClientDetails(9);
-		
+//		activity.ViewClientActivities(1);
 //		activity.viewAccountDetails(14);
 		//activity.viewAllDiposits();
 //		activity.getClientDetails(4444);
 		//activity.depositInToAccount(9, 10000);
 		//java.sql.Date sqlDate = new Date(ts);
+//		 long ts = System.currentTimeMillis();
+//		 java.sql.Date sqlDate = new Date(ts);
+//		 Deposit dp = new Deposit(20,20,1000,Type.GOLD,10010,(Date) sqlDate ,"2014-10-10");
+//		 activity.createNewDeposit(dp);
+		 
 		
 //		Deposit deposit = new Deposit(0,9, 1970, Data_Access.Type.REGULAR, 2000,"2013-08-23","2014-09-30");
 //		Deposit deposit = new Deposit(0,9, 1000, null, 0,"2013-08-23","2014-09-30");
@@ -51,9 +56,12 @@ public class Test {
 //		System.out.println("deposit..............."+deposit);
 		//activity.viewAllDiposits();
 //		activity.viewAllClientDeposits(20);
-//		activity.withdraw(1, 3768);
+//		activity.withdraw(1, 1);
 //		activity.getAccountBy_Id(14);
 //		activity.viewAllClientDeposits(9);
+		ClientActivity activity = b.login(9, "12345");
+		activity.PreOpenDeposit(60, 9, 9);
+		
 		
 		
 		
@@ -94,7 +102,7 @@ public class Test {
 		
 		/*********************************************/
 		/**createNewDeposit**/
-//		ClientActivity clAc = b.login(9, "password");
+		//ClientActivity clAc = b.login(9, "password");
 //		 long ts = System.currentTimeMillis();
 //		 java.sql.Date sqlDate = new Date(ts);
 //		 Deposit deposit = new Deposit(0,9, 1970, Data_Access.Type.REGULAR, 2000,sqlDate,"2013-09-30");
@@ -113,8 +121,10 @@ public class Test {
 		
 //
 		
-		//AdminActivity act =  b.AdminLogin("username", "system");
+//		AdminActivity act =  b.AdminLogin("username", "system");
+		//act.viewSystemproperty();
 		//act.ViewClientActivities(1);
+		
 		//act.viewAllActivities();
 		
 //		 Client cl = new Client(0, "Dabur", "qw23rt",
@@ -184,9 +194,12 @@ public class Test {
 		/**get Client Deposit using Deposit_id**/
 //		 DepositsDBManager dmgr = DepositsDBManager.getInstance();
 //		 ConnectionPoolManager conpm = new ConnectionPoolManager();
-//		 long ts = System.currentTimeMillis();
-//		 java.sql.Date sqlDate = new Date(ts);
-//		 Deposit dp = new Deposit(20,20,1000,Type.GOLD,10010,sqlDate,"2014-10-10");
+		 long ts = System.currentTimeMillis();
+		 java.sql.Date sqlDate = new Date(ts);
+		//Deposit dp = new Deposit(20,20,1000,Type.GOLD,10010,sqlDate,"2014-10-10");
+//		 Deposit dp = new Deposit
+//		 activity.createNewDeposit(dp);
+		 
 //		 dmgr.getDeposit(conpm.getConnectionFromPool(), dp);
 		/***************************************************/
 		/**get one deposit using deposit_id**/

@@ -16,6 +16,7 @@ public interface DepositsManager {
 	public boolean updateDeposit(Connection con, Deposit d);
 
 	public Deposit getDeposit(Connection con, Deposit d);
+	public Deposit getDepositById(Connection con, int deposit_id);
 
 	/** get all deposits using client_id **/
 	public List<Deposit> getAllDiposits(Connection con);
