@@ -27,15 +27,15 @@ public class ClientActivity {
 	
 	/** View client details **/
 	public Client getClientDetails(int client_id) throws MbankException {
-		//TODO validate if the client exist if not throw Mbank exception 
 		ConnectionPoolManager connn = new ConnectionPoolManager();
 		 client = ClientsDBManager.getInstance().selectClient(
 				connn.getConnectionFromPool(), client_id);
 		if (client_id == client.getClient_id()){
 			return client;
-		}else {			
+		}else {	
+			throw new MbankException("No Client found");
 		}
-		throw new MbankException("No Client found");
+	
 	}
 
 	/**view Account Details**/
