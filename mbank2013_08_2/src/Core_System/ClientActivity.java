@@ -211,15 +211,10 @@ System.out.println("\n your account deails is : >>> " + account);
  }
 	
 
-	/**pre Open Deposit**/
-	public void preOpenDeposit() {
+	/**close Deposit it should be automatic**/
+	public void CloseDeposit() {
 		// TODO "Money is transferred after charging a commission"
 	}
 
 
-	
-//	public double getClientBalance() {
-//		// TODO Auto-generated method stub
-//		return this.account.getBalance();
-//	}
 }

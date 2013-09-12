@@ -30,55 +30,62 @@ public class AdminActivity {
 		this.properties = p;
 	}
 
-	/**
-	 * @throws MbankException
-	 *********************************************/
-
-	public void addNewClient(Client cl, double amount, Properties p, Account ac)
-			throws MbankException {
-		ConnectionPoolManager conn = new ConnectionPoolManager();
-		properties.setProp_key(p.getProp_key());
-		properties.setProp_value(p.getProp_value());
-		p = PropertiesDBManager.getInstance().getPropertiesValues(
-				conn.getConnectionFromPool(), p);
-		String str = p.getProp_value();
-		int Prop_value = Integer.parseInt(str);
-
-		int regular = 0;
-		int gold = 0;
-		int platinum = 0;
-
-		if (Prop_value <= 10000) {
-			regular = Prop_value;
-		} else if (Prop_value <= 10001) {
-			gold = Prop_value;
-		} else if ((Prop_value <= 100000) || (Prop_value > 1000000)) {
-			platinum = Prop_value;
-		}
-
-		if (amount <= regular) {
+	 /*********************************************/
+	
+	/**Create new Client and Account**/
+	public void addNewClient(Client cl, double amount) throws MbankException {
+		ConnectionPoolManager con = new ConnectionPoolManager();
+	
+		if (amount <= 10000) {		
 			cl.setType(Data_Access.Type.REGULAR);
-
-		} else if (amount >= gold) {
+		} else if ((amount > 10000) && (amount < 100000)) {	
 			cl.setType(Data_Access.Type.GOLD);
-
-		} else if (amount >= platinum) {
+		} else if (amount > 100000) {
 			cl.setType(Data_Access.Type.PLATINUM);
-
 		}
+		
+		Client client = new  Client(0, cl.getClient_name(), cl.getPassword(), cl.getType(), cl.getAddress(), cl.getEmail(), cl.getPhone(), cl.getComment());
+		List<Properties> properties = new ArrayList<Properties>();
+		properties = PropertiesDBManager.getInstance().getAllProperties(con.getConnectionFromPool());
+		
+		 double balance;
+		 balance = amount;
+		 double credit_limit = 0;
+		 Account ac = new Account(0,client.getClient_id(),balance,credit_limit,"New Account 2013-09-12");
+		 
+		if ((client.getType() == (Data_Access.Type.REGULAR))  || (client.getType() == (Data_Access.Type.GOLD)) || (client.getType() == (Data_Access.Type.PLATINUM)) ){
+			for(Properties p : properties) {
+				p.getProp_key();
+				p.getProp_value();
 
-		// TODO Rejection saving account if the client is not valid!!! &&
-		// Rejection saving client if the account is not valid !!!
-		if (ac.getBalance() > 0) {
-			AccountsDBManager.getInstance().createAccount(
-					conn.getConnectionFromPool(), ac);
-			ClientsDBManager.getInstance().createNewClient(
-					conn.getConnectionFromPool(), cl);
+				if (p.getProp_key().equals("regular_credit_limit") && (balance <= 10000)){
+					credit_limit = (double) Integer.parseInt(p.getProp_value());
+					ac.setCredit_limit(credit_limit);
+					
+					}else if (p.getProp_key().equals("gold_credit_limit") && (balance < 100000)){
+						credit_limit = (double) Integer.parseInt(p.getProp_value());
+						ac.setCredit_limit(credit_limit);
+						
+					}else if (p.getProp_key().equals("platinum_credit_limit") && (balance > 100000)){
+						credit_limit = (double) Integer.parseInt(p.getProp_value());
+						ac.setCredit_limit(credit_limit);
+					}
+			}
+		}/////
+			 		
+		if (amount > 0) {
+		ClientsDBManager.getInstance().createNewClient(con.getConnectionFromPool(), client);
+		client = ClientsDBManager.getInstance().GetClient(con.getConnectionFromPool(), client.getClient_name(),client.getPassword());
+		ac = new Account(0,client.getClient_id(),balance,credit_limit,"New Account 2013-09-12");
+		//ac.setCredit_limit(credit_limit);
+		System.out.println("ac.setCredit_limit(credit_limit) --- > " + credit_limit);
+			AccountsDBManager.getInstance().createAccount(con.getConnectionFromPool(), ac);
 		} else {
 			throw new MbankException("illigal amount ");
-		}
-
-	}
+		}		 
+ }
+				 
+				 
 	/*** Update client details***/
 	public void updateClientDetails(Client cl) {
 		// TODO Validate this method,what allowed when updating client!!

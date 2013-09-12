@@ -59,8 +59,8 @@ public class Test {
 //		activity.withdraw(1, 1);
 //		activity.getAccountBy_Id(14);
 //		activity.viewAllClientDeposits(9);
-		ClientActivity activity = b.login(9, "12345");
-		activity.PreOpenDeposit(60, 9, 9);
+//		ClientActivity activity = b.login(9, "12345");
+//		activity.PreOpenDeposit(60, 9, 9);
 		
 		
 		
@@ -121,18 +121,13 @@ public class Test {
 		
 //
 		
-//		AdminActivity act =  b.AdminLogin("username", "system");
+		AdminActivity act =  b.AdminLogin("username", "system");
 		//act.viewSystemproperty();
 		//act.ViewClientActivities(1);
 		
 		//act.viewAllActivities();
-		
-//		 Client cl = new Client(0, "Dabur", "qw23rt",
-//		 Data_Access.Type.REGULAR,
-//		 "New Yorek ", "EDabur@gmail.com", "0574704549",
-//		 "comment Dabur");
-//		 Properties p = new Properties(null, null, 20124, 0, 100000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-//		 act.addNewClient(cl,100,p); 
+		 Client cl = new Client("Dabur28", "12345","New Yorek ", "EDabur@gmail.com", "0574704549","comment Dabur");
+		 act.addNewClient(cl,100001); 
 		/***********************************************/
 		/**admin create new client and account*/
 		

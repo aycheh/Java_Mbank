@@ -23,5 +23,7 @@ public interface ClientSManager {
 	public boolean deleteClient(Connection con, Client c);
 	//public List<Account> getAllAccounts(Connection con);
 	public List<Client> getAllClients(Connection con);
+	/**get client by ID**/
+	public Client GetClient(Connection con, String client_name , String client_passwod);
 
 }

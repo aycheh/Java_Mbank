@@ -27,10 +27,27 @@ public class Client {
 		this.comment = comment;
 	}
 	
-
+////
+	public Client(String client_name, String password,
+			 String address, String email, String phone,
+			String comment) {
+		super();
+		this.client_name = client_name;
+		this.password = password;
+		this.address = address;
+		this.email = email;
+		this.phone = phone;
+		this.comment = comment;
+	}
+///
 	// This constructor use to create Client login 
 	public Client(int client_id, String password){
 		this.client_id = client_id;
+		this.password = password;
+	}
+	
+	public Client(String client_name, String password){
+		this.client_name = client_name;
 		this.password = password;
 	}
 	

@@ -154,4 +154,36 @@ public class ClientsDBManager implements ClientSManager {
 		return clients;
 	}
 
+	@Override
+	public Client GetClient(Connection con, String client_name, String password) {
+		Client clientToReturn = null;
+		try {
+			PreparedStatement pstmt = con
+					.prepareStatement("select * from clients where client_name = ? and password = ?");
+			pstmt.setString(1, client_name);
+			pstmt.setString(2,password);
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				clientToReturn = new Client(rs.getString(1),rs.getString(2));
+				clientToReturn.setClient_id(rs.getInt(1));
+				clientToReturn.setClient_name(rs.getString(2));
+				clientToReturn.setPassword(rs.getString(3));
+				clientToReturn.setType(Type.valueOf(rs.getString(4)));
+				clientToReturn.setAddress(rs.getString(5));
+				clientToReturn.setEmail(rs.getString(6));
+				clientToReturn.setPhone(rs.getString(7));
+				clientToReturn.setComment(rs.getString(8));
+				
+			} else {
+				System.err.println("No client founed");
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		System.out.println("clientToReturn ===>> :" +clientToReturn);
+		return clientToReturn;
+		
+	}
+
 }/** END OF CLASS**/
