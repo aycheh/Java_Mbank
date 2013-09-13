@@ -62,7 +62,7 @@ public class Test {
 //		activity.getAccountBy_Id(14);
 //		activity.viewAllClientDeposits(9);
 //		ClientActivity activity = b.login(9, "12345");
-		activity.PreOpenDeposit(65, 9, 9);
+		activity.PreOpenDeposit(100, 9, 9);
 		
 		
 		

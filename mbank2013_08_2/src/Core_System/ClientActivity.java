@@ -199,7 +199,9 @@ System.out.println("\n your account deails is : >>> " + account);
 		Client cl = new Client(client_id);
 		Deposit dp = new Deposit(deposit_id);
 		dp = DepositsDBManager.getInstance().getDepositById(con.getConnectionFromPool(), dp.getDeposit_id());
-			
+		if (dp == null){
+			throw new MbankException("No deposit found for this client: check your deposit ID");
+		}
 		if (cl.getClient_id() !=(dp.getClient_id())) {
 			throw new MbankException("No deposit found for this client: check your deposit ID");
 		} else if (dp.getBalance() >= 1){
