@@ -72,33 +72,25 @@ System.out.println("\n your account deails is : >>> " + account);
 		boolean withdraw  = false;
 		ConnectionPoolManager con = new ConnectionPoolManager();
 		Account ac = new Account(account_id);
-		account = AccountsDBManager.getInstance().getAccount(con.getConnectionFromPool(), ac.getAccount_id());
-		if (amount <= 0) {
-			
+		ac = AccountsDBManager.getInstance().getAccount(con.getConnectionFromPool(), ac.getAccount_id());
+		if (amount <= 0) {		
 			throw new MbankException("illegal amount: " + amount);
 		}
-		if (account.getBalance() - amount >= (account.getCredit_limit()*(-1))) {
-			account.setBalance(account.getBalance() - amount);
+		if (ac.getBalance() - amount >= (ac.getCredit_limit()*(-1))) {
+			ac.setBalance(ac.getBalance() - amount);
 			AccountsDBManager.getInstance().updateAccount(
-					con.getConnectionFromPool(), account);
+					con.getConnectionFromPool(), ac);
 			withdraw  = true;
-//			Client cl = new Client(ac.getClient_id());
-//			String commission = "0.5"; 
-//			String description = "withdraw";
+			String commission1 = (String)"0.5"; 
+			double commission = Double.parseDouble(commission1);
+			String description = "withdraw";
 			
-//			java.util.Date utilDate = new java.sql.Date(System.currentTimeMillis());
-			// Convert it to java.sql.Date
-//			java.sql.Date sqlDate = (Date) utilDate; 
-			
-//			//long t = today.getTime();
-//			//java.sql.Date dt = new java.sql.Date(t);
-			
-//			List<Properties> properties1 = new ArrayList<Properties>();
-			
-//			properties1 = PropertiesDBManager.getInstance().getAllProperties(con.getConnectionFromPool());
-			// DTOD i need to resolve the date problem
-//			Activity act = new Activity(0, cl.getClient_id(), amount,sqlDate, commission, description);
-//			ActivitysDBManager.getInstance().createNewActivity(con.getConnectionFromPool(), act);
+			java.util.Date utilDate = new java.sql.Date(System.currentTimeMillis());
+			java.sql.Date sqlDate = (Date) utilDate; 
+			Client cl = new Client(ac.getClient_id());
+			cl = ClientsDBManager.getInstance().selectClient(con.getConnectionFromPool(), cl.getClient_id());
+			Activity act = new Activity(0, cl.getClient_id(), amount,sqlDate, commission, description);
+			ActivitysDBManager.getInstance().createNewActivity(con.getConnectionFromPool(), act);
 		} else {
 			
 			throw new MbankException("you don't have sufficient credit");
@@ -113,9 +105,9 @@ System.out.println("\n your account deails is : >>> " + account);
 	public void createNewDeposit(Deposit deposit)
 			throws MbankException {
 		
-		ConnectionPoolManager connn = new ConnectionPoolManager();
+		ConnectionPoolManager con = new ConnectionPoolManager();
 		client = ClientsDBManager.getInstance().selectClient(
-				connn.getConnectionFromPool(), client.getClient_id());
+				con.getConnectionFromPool(), client.getClient_id());
 
 		deposit.setClient_id(client.getClient_id());
 		deposit.setType(client.getType());
@@ -131,9 +123,16 @@ System.out.println("\n your account deails is : >>> " + account);
 		}
 
 		DepositsDBManager.getInstance().createNewDeposit(
-				connn.getConnectionFromPool(), deposit);
+				con.getConnectionFromPool(), deposit);
 		// TODO close the client Deposits when the closing date is arrive.
 		// TODO Calculate the commission and the Interest FOR the deposits
+		
+		java.util.Date utilDate = new java.sql.Date(System.currentTimeMillis());
+		java.sql.Date sqlDate = (Date) utilDate; 
+		double commission = 0;
+		double amount = (deposit.getBalance());
+		Activity act = new Activity(0, client.getClient_id(), amount,sqlDate, commission, "createNewDeposit");
+		ActivitysDBManager.getInstance().createNewActivity(con.getConnectionFromPool(), act);
 	}
 
 	/** deposit depositInToAccount balance **/
@@ -148,6 +147,12 @@ System.out.println("\n your account deails is : >>> " + account);
 		account.setBalance(account.getBalance() + amnout);
 		AccountsDBManager.getInstance().updateAccount(
 				con.getConnectionFromPool(), account);
+		
+		double commission = 0;
+		java.util.Date utilDate = new java.sql.Date(System.currentTimeMillis());
+		java.sql.Date sqlDate = (Date) utilDate;
+		Activity act = new Activity(0, account.getClient_id(), amnout,sqlDate, commission, "depositInToAccount");
+		ActivitysDBManager.getInstance().createNewActivity(con.getConnectionFromPool(), act);
 	}
 	
 
@@ -188,7 +193,7 @@ System.out.println("\n your account deails is : >>> " + account);
 
 		
 	
-	/**close Deposit it should be automatic**/
+	/**Pre-Open Deposit**/
 	public void PreOpenDeposit(int deposit_id , int client_id, int account_id) throws MbankException {		
 		ConnectionPoolManager con = new ConnectionPoolManager();
 		Client cl = new Client(client_id);
@@ -196,7 +201,7 @@ System.out.println("\n your account deails is : >>> " + account);
 		dp = DepositsDBManager.getInstance().getDepositById(con.getConnectionFromPool(), dp.getDeposit_id());
 			
 		if (cl.getClient_id() !=(dp.getClient_id())) {
-			throw new MbankException("No deposit found for this client: check yout deposit ID");
+			throw new MbankException("No deposit found for this client: check your deposit ID");
 		} else if (dp.getBalance() >= 1){
 			Account ac = new Account(account_id);
 			ac = AccountsDBManager.getInstance().getAccount(con.getConnectionFromPool(), ac.getAccount_id());
@@ -204,7 +209,16 @@ System.out.println("\n your account deails is : >>> " + account);
 			
 			AccountsDBManager.getInstance().updateAccount(con.getConnectionFromPool(), ac);
 			dp.setBalance(0);		
-			DepositsDBManager.getInstance().updateDeposit(con.getConnectionFromPool(), dp);		
+			DepositsDBManager.getInstance().updateDeposit(con.getConnectionFromPool(), dp);	
+			
+			
+			double commission = 0;
+			double amnout = (dp.getBalance());
+			java.util.Date utilDate = new java.sql.Date(System.currentTimeMillis());
+			java.sql.Date sqlDate = (Date) utilDate;
+			Activity act = new Activity(0, cl.getClient_id(), amnout,sqlDate, commission, "PreOpenDeposit");
+			ActivitysDBManager.getInstance().createNewActivity(con.getConnectionFromPool(), act);
+			
 		}else {
 			throw new MbankException("cant run the method  seccse........");	
 		} 
