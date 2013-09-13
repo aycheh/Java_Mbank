@@ -47,12 +47,13 @@ public class ClientActivity {
 				connn.getConnectionFromPool(), account_id);
 		
 		System.out.println(account);
-		if (account.getClient_id() == client.getClient_id()) {
+		if (account.getClient_id() == (client.getClient_id())) {
 System.out.println("\n your account deails is : >>> " + account);
 			return account;
 		} else {
+			throw new MbankException("No account Found ");
 		}
-		throw new MbankException("  No account Found ");
+//		throw new MbankException("  No account Found ");
 	}
 
 	/**update Client Details**/
